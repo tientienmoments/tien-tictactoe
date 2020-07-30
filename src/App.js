@@ -6,7 +6,7 @@ import FacebookLogin from 'react-facebook-login';
 
 import './App.css';
 import Board from './component/Board'
-import video from './video/video.mp4'
+
 
 export default class App extends Component {
   constructor(props) {
