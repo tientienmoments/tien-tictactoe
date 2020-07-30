@@ -1,13 +1,216 @@
-.square{
-  width: 200px;
-  height:200px;
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+  }  
+
+body{
+  background-image: url("https://i.gifer.com/4APK.gif");
+  background-size: cover;
+  /* background: url("./video/video.mp4"); */
+  height: 100%;
+  
+}
+.container{
+  
+  padding:20px;
+}
+/* .square{
+  width: 150px;
+  height:150px;
   border: 1px solid red;
   font-size:30pt;
-  display: flex;
+  display: flex;  
   justify-content: center;
   align-items: center;
+} */
+
+/* body {
+	background: #000;
+} */
+.box-outer {
+	overflow: hidden;
+	margin: 5px auto;
+	width: 150px;
+	height: 150px;
+} 
+.main_box {
+	width: 150px;
+	height: 150px;
+	position: relative;
+	/* background: #f34c4c; */
+  border: 3px solid rgba(0, 0, 0, 0);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.452);
 }
+.bar {
+	position: absolute;
+	width: 50px;
+	height: 5px;
+	background: #fff;
+	transition: all 1s linear;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+.bardelay {
+	animation-delay: 0.5s;
+	-webkit-animation-delay: 0.5s;
+}
+.top {
+	top: -5px;
+	left: -5px;
+}
+.right {
+	top: 18px;
+	right: -28px;
+	transform: rotate(90deg);
+}
+.bottom {
+	bottom: -5px;
+	left: -5px;
+}
+.left {
+	top: 18px;
+	left: -28px;
+	transform: rotate(90deg);
+}
+ @-webkit-keyframes h-move {
+ 0% {
+left: -5px;
+}
+100% {
+left: 200px;
+}
+}
+ @keyframes h-move {
+ 0% {
+left: -5px;
+}
+100% {
+left: 200px;
+}
+}
+.top, .bottom {
+	-webkit-animation-name: h-move;
+	animation-name: h-move;
+}
+ @-webkit-keyframes v-move {
+0% {
+top: -5px;
+}
+100% {
+top:228px;
+}
+}
+ @keyframes v-move {
+ 0% {
+top: -5px;
+}
+100% {
+top:228px;
+}
+}
+.right, .left {
+	-webkit-animation-name: v-move;
+	animation-name: v-move;
+}
+
+
+
+/*  */
 .login-style{
   width:70px;
   border-radius: 50px;
+}
+.player-style{
+  width: 100px;
+  border-radius: 50%;
+}
+.main-style{
+  border: 1px solid red;
+  /* margin: 20px 20px; */
+  
+}
+
+
+/* LOGO  */
+
+
+
+
+
+.text {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  margin-top: 80px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  text-align: center;
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+}
+.text:hover {
+  -webkit-transform: rotateX(35deg), translateY(-50%);
+          transform: rotateX(35deg), translateY(-50%);
+}
+.text:hover span {
+  color: #ccc;
+}
+.text:hover span:nth-child(odd) {
+  -webkit-transform: skewY(15deg);
+          transform: skewY(15deg);
+}
+.text:hover span:nth-child(even) {
+  -webkit-transform: skewY(-15deg);
+          transform: skewY(-15deg);
+  background-color: #f9f9f9;
+  color: #a6a6a6;
+}
+.text > span {
+  display: block;
+  background-color: #fff;
+  width: 62.5px;
+  height: 100px;
+  line-height: 120px;
+  -webkit-transition: color .3s ease-in-out, background-color .3s ease-in-out, -webkit-transform .3s ease-in-out;
+  transition: color .3s ease-in-out, background-color .3s ease-in-out, -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out, color .3s ease-in-out, background-color .3s ease-in-out;
+  transition: transform .3s ease-in-out, color .3s ease-in-out, background-color .3s ease-in-out, -webkit-transform .3s ease-in-out;
+  box-shadow: 0 40px 50px rgba(0, 0, 0, 0.1);
+}
+.text > span:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+
+/* scrolllll */
+.scoll-style{
+  margin-bottom: 10px;
+  height:150px;
+  display: flex;
+  overflow: scroll;
+  background-color: #f9f9f97a;
+  padding: 20px;
+}
+.sidebar-style {
+  
+  height:100%;
+  /* display: flex;
+  justify-content: center; */
+  padding-top:0px;
+  margin-bottom:0px;
 }

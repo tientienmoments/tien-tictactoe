@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Col, Row, Container, Button } from 'react-bootstrap'
 
 import FacebookLogin from 'react-facebook-login';
 
 import './App.css';
 import Board from './component/Board'
+import video from './video/video.mp4'
 
 export default class App extends Component {
   constructor(props) {
@@ -15,7 +17,7 @@ export default class App extends Component {
       squaresList: ['', '', '', '', '', '', '', '', ''],
       winner: "",
       history: [],
-      
+
     };
   }
 
@@ -24,30 +26,24 @@ export default class App extends Component {
   }
 
   postData = async () => {
-    // let data = new URLSearchParams();
-    // data.append("player", "tien");
-    // data.append("score", -1500);
-let data = {
-  player: "Tien Tien",
-  score: -1500,
-}
-
-    console.log("data", data)
-   const url = `http://ftw-highscores.herokuapp.com/tictactoe-dev`;
+    let data = new URLSearchParams();
+    data.append("player", "Tien");
+    data.append("score", 3);
+    const url = `http://ftw-highscores.herokuapp.com/tictactoe-dev`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify(data),
-      json: true
+      body: data.toString(),
+      json: true,
     });
 
   }
 
   getData = async () => {
     let url = `http://ftw-highscores.herokuapp.com/tictactoe-dev`
-    let data= await fetch(url)
+    let data = await fetch(url)
     let result = await data.json()
     console.log("result?", result)
     this.setState({
@@ -56,17 +52,17 @@ let data = {
       // otherScore:result.item.score
     })
   }
-  componentDidMount(){
+  componentDidMount() {
     this.getData()
     this.postData()
-      // this.setState({otherPlayer:/result.item.name, otherScore:result.item.score})
+    // this.setState({otherPlayer:/result.item.name, otherScore:result.item.score})
 
   }
-//   otherScore =(result)=>{
-// console.log("result",result)
-//   }
-  
-  
+  //   otherScore =(result)=>{
+  // console.log("result",result)
+  //   }
+
+
 
 
 
@@ -88,56 +84,92 @@ let data = {
 
   render() {
     return (
-      <div>
-        <div>
-        {this.state.userName ===""?
-            
-         <FacebookLogin
+      this.state.userName === "" ?
+        <>
+          {/* <video src={video} width="100%" height="100%" autoplay="true" /> */}
+          <FacebookLogin
 
-          appId="295808331745524"
-          autoLoad={true}
-          fields="name,email,picture"
-          // onClick={this.componentClicked}
-          callback={this.responseFacebook}
+            appId="295808331745524"
+            autoLoad={true}
+            fields="name,email,picture"
+            // onClick={this.componentClicked}
+            callback={this.responseFacebook}
 
-        /> : null
-    }
+          />
+        </>
+        :
+        <>
+          {/* <video src={video} width="100%" height="100%" autoplay="true" /> */}
+          <Container >
 
-        </div>
-
-        {/* ----------------------- */}
-        <div>
-        <h1 >Tic Tac Toe</h1>
-       {this.state.otherPlayers ? this.state.otherPlayers.map((item)=> item.player ) : null}
-       {this.state.otherPlayers ? this.state.otherPlayers.map((item)=> item.score) : null}
-        <span ><img src={this.state.picture} className="login-style" /></span>
-        <h3>Playing Player:{this.state.userName}</h3>
-        {/* <h3>Next Player:{this.state.nextPlayer}</h3> */}
-        </div>
-      {/* ------------------------------------ */}
-        <div >
-        <Board
-          postData={this.postData}
-          squaresList={this.state.squaresList}
-          setParentsState={this.setParentsState}
-          nextPlayer={this.state.nextPlayer}
-          winner={this.state.winner}
-          history={this.state.history}
-        />
-        <ol hidden={this.state.hide}>History
-        {this.state.history.map((record, index) => {
-          return (
+            <Row >
+              <Col className="sidebar-style">
+                <Row  >
+                  {/* <h1 aria-label="Tic Tac Toe"></h1> */}
+                  <div class="text">
+                    <span>T</span>
+                    <span>I</span>
+                    <span>C</span>
+                    <span>T</span>
+                    <span>A</span>
+                    <span>C</span>
+                    <span>T</span>
+                    <span>O</span>
+                    <span>E</span>
+                  </div>
 
 
-            <li><button onClick={() => this.backToPast(index)}>Go to: {index + 1}</button></li>
 
-          )
-        })}
+                </Row>
+                <Row style={{ display: "flex", justifyContent: "space-around", alignItems: "center", marginBottom:"20px" }}>
+                  <span ><img src={this.state.picture} className="login-style" /></span>
+                  <h4>Player:{this.state.userName}</h4>
+                  {/* <h3>Next Player:{this.state.nextPlayer}</h3> */}
+                </Row>
+                <Row className="scoll-style">
+                  <ol><span style={{ fontWeight: "bold" }}>History</span>
+                    {this.state.history.map((record, index) => {
+                      return (
 
-        </ol>
-        </div>
-      </div>
 
+                        <p><Button variant="info" style={{ margin: "0px" }} onClick={() => this.backToPast(index)}>Go to:{index + 1}</Button> </p>
+
+                      )
+                    })}
+                  </ol>
+
+                </Row>
+                <Row className="scoll-style set-bottom">
+                  <ol> <span style={{ fontWeight: "bold" }}>Ranking</span>
+                    {this.state.otherPlayers ? this.state.otherPlayers.map((item, index) => {
+                      return (
+                        <Row>
+                          <Col>Player: {item.player}</Col>
+                          <Col>Score: {item.score}</Col>
+                        </Row>
+                      )
+
+                    }) : null}
+
+                  </ol>
+                </Row>
+              </Col>
+              <Col>
+                <Board
+                  postData={this.postData}
+                  squaresList={this.state.squaresList}
+                  setParentsState={this.setParentsState}
+                  nextPlayer={this.state.nextPlayer}
+                  winner={this.state.winner}
+                  history={this.state.history}
+                />
+
+              </Col>
+
+
+            </Row>
+          </Container>
+        </>
 
     )
   }

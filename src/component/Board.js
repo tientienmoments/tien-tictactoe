@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Square from './Square'
+import { Col, Row, Container, Button } from 'react-bootstrap'
 
 export default class Board extends Component {
     
@@ -82,9 +83,10 @@ selectSquare=(id)=>{
     render() {  
         let array = this.props.squaresList;
         if (this.props.winner !== "") {
-        return<h4> Winner: {this.props.winner === "x"? <img src="https://image.flaticon.com/icons/png/512/826/826963.png" width="150px" alt="player pic"></img> : <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSy9yywjjq9v6mNaL9tkVCnO4Sa6EPUMcJFtQ&usqp=CAU" width="150px" alt="player pic"></img>} <br></br>
+        return<Container style={{width:"700px", height:"500px",display:"flex", justifyContent:"center", alignItems:"center", textAlign:"center"}}><h4> The Winner is: {this.props.winner === "x"? <img  width="200px" src="https://i.pinimg.com/originals/d6/c0/eb/d6c0eb6b4487c133c431c8957ac19ed5.gif" width="150px" alt="player pic"></img> : <img className="player-style" src="https://media1.tenor.com/images/4a54404d97232c2cfd7b30bb5575e29c/tenor.gif?itemid=6240685" width="150px" alt="player pic"></img>} <br></br>
                 <span>Game Over</span>
                 </h4>
+                </Container>
             
             
         }else if (array.every((item) => item !== '')){
@@ -97,7 +99,7 @@ selectSquare=(id)=>{
             <div>
 
 
-                <h4>Next Player<br></br> {this.props.nextPlayer === true ?<img src="https://image.flaticon.com/icons/png/512/826/826963.png" width="150px" alt="player pic"></img> :  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSy9yywjjq9v6mNaL9tkVCnO4Sa6EPUMcJFtQ&usqp=CAU" width="150px" alt="player pic"></img>}</h4>
+                <h4>Next Player<br></br> {this.props.nextPlayer === true ?<img  width="200px" src="https://i.pinimg.com/originals/d6/c0/eb/d6c0eb6b4487c133c431c8957ac19ed5.gif" width="150px" alt="player pic"></img> :  <img className="player-style" src="https://media1.tenor.com/images/4a54404d97232c2cfd7b30bb5575e29c/tenor.gif?itemid=6240685" width="150px" alt="player pic"></img>}</h4>
                 
                 <div style={{ display: "flex" }}>
                     
